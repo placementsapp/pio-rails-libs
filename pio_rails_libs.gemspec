@@ -28,11 +28,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rails", "~> 6.0"
-  spec.add_dependency "resque", "~> 1.27.4"
+  spec.add_dependency "resque", "~> 2.0.0"
   spec.add_dependency "resque-heroku", "~> 0.1.0"
-  spec.add_dependency "resque-heroku-signals", "~> 1.27.4.3"
-  spec.add_dependency "resque-retry", "~> 1.5.0"
-  spec.add_dependency "resque-scheduler", "~> 4.3.1"
+  spec.add_dependency "resque-heroku-signals", "~> 2.0.0"
+  spec.add_dependency "resque-retry", "~> 1.7.4"
+  spec.add_dependency "resque-scheduler", "~> 4.4.0"
 
   spec.add_development_dependency "rspec", "~> 3.2"
 end

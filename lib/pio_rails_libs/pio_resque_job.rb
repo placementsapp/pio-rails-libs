@@ -2,11 +2,6 @@ require 'resque'
 require 'resque-retry'
 require 'resque/plugins/heroku'
 
-#require 'resque/plugins/pio_multiple_db'
-#require 'pio_metrics'
-#require 'pio_diagnostics'
-#require 'has_pio_logger'
-
 # abstract base class for background jobs
 class PioResqueJob
   include HasPioLogger
