@@ -11,7 +11,7 @@ module PioResqueExponentialRetry
     @retry_limit ||= backoff_strategy.length
   end
 
-  def retry_delay
+  def retry_delay(exception_class = nil)
     delay = backoff_strategy[retry_attempt] || backoff_strategy.last
     # add some jitter to avoid thundering herd
     (delay * rand(1.0..1.5)).to_i
