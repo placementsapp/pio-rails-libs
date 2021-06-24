@@ -42,7 +42,7 @@ class PioResqueJob
   # NOTE: unfortunately, hooks still need to be aware of existence of job metadata!
   def self.perform(*args)
     job_meta = extract_job_meta!(args)
-    should_perform = job_meta.blank? || !Resque.redis.exists(cancel_key(job_meta['pio_job_id']))
+    should_perform = job_meta.blank? || !Resque.redis.exists?(cancel_key(job_meta['pio_job_id']))
     if should_perform
       PioDiagnostics.context.update(
         pio_job_class: self.name,
