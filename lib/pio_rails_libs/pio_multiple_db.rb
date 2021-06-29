@@ -24,6 +24,10 @@ class PioMultipleDb
     "#{Rails.env}_readonly"
   end
 
+  def self.main_connection_name
+    "primary"
+  end
+
   # run the block of code w/ a connection to another DB, given connection name
   def self.with_connection(name)
     original = ActiveRecord::Base.connection_specification_name
@@ -42,5 +46,10 @@ class PioMultipleDb
   # shortcut to run a block of code with readonly DB
   def self.with_readonly
     with_connection(readonly_connection_name) { yield }
+  end
+
+  # shortcut to run a block of code with main DB
+  def self.with_main
+    with_connection(main_connection_name) { yield }
   end
 end
