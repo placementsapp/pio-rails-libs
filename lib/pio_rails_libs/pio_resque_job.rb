@@ -115,6 +115,10 @@ class PioResqueJob
       Rails.logger.error "Job #{self} failed, will NOT retry, id: #{job_meta['pio_job_id']}, exception: #{exception.inspect.truncate(1000).gsub("\n", ' ')}, args: #{args.inspect}"
       Honeybadger.notify(exception, context: PioDiagnostics.context, sync: true)
     end
+
+    if ENV['PIO_RESQUE_VERBOSE_LOG'].to_s.downcase == 'true'
+      Rails.logger.warn exception.backtrace.take(50).join("\n")
+    end
   end
 
   def self.ensure_job_meta!(args)
