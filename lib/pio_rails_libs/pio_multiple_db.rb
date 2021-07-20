@@ -3,10 +3,8 @@
 class PioMultipleDb
   # establish connections to other DBs
   def self.establish_connections
-    resolver = ActiveRecord::ConnectionAdapters::ConnectionSpecification::Resolver.new(ActiveRecord::Base.configurations)
-
     other_connection_names.map do |cn|
-      ActiveRecord::Base.connection_handler.establish_connection(resolver.spec(cn.to_sym).to_hash)
+      ActiveRecord::Base.connection_handler.establish_connection(cn.to_sym)
     end
   end
 
@@ -25,7 +23,7 @@ class PioMultipleDb
   end
 
   def self.main_connection_name
-    "primary"
+    ActiveRecord::Base.name
   end
 
   # run the block of code w/ a connection to another DB, given connection name
