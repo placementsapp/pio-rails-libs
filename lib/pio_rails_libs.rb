@@ -15,6 +15,8 @@ require 'pio_rails_libs/active_job/queue_adapters/pio_resque_job_adapter'
 require 'pio_rails_libs/public_api/permission_denied_error'
 require 'pio_rails_libs/public_api/throttler'
 
+require "pio_rails_libs/pio_utils"
+
 module PioRailsLibs
   class Error < StandardError; end
   # Your code goes here...
