@@ -15,9 +15,9 @@ module PublicApi
       count = redis.get(redis_key)
       return true if count.present? && count.to_i >= limit
 
-      redis.multi do
-        redis.incr(redis_key)
-        redis.expire(redis_key, period)
+      redis.multi do |pipeline|
+        pipeline.incr(redis_key)
+        pipeline.expire(redis_key, period)
       end
       false
     end
