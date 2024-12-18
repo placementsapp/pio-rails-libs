@@ -15,7 +15,7 @@ module ActiveJob
       class JobWrapper < ::PioResqueJob
         extend PioResqueExponentialRetry
 
-        @queue = :general
+        @queue = ENV['PIO_JOB_WRAPPER_QUEUE'].presence || :general
 
         def self.perform_internal(job_data)
           ActiveJob::Base.execute(job_data)
