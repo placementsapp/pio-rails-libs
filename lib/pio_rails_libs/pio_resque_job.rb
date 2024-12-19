@@ -94,7 +94,7 @@ class PioResqueJob
     raise e
   ensure
     elapsed_ms = (Time.now - start) * 1000
-    PioMetrics.publish('Resque', job: self.name, status: job_status, elapsed_ms: elapsed_ms, queued_ms: queued_ms, id: job_meta['pio_job_id'])
+    PioMetrics.publish('Resque', job: self.name, status: job_status, elapsed_ms: elapsed_ms, queued_ms: queued_ms, id: job_meta['pio_job_id'], args: args.inspect.truncate(50))
   end
 
   # hook for resque-retry before re-enqueue
